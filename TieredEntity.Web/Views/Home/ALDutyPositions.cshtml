@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TieredEntity.Web.Models.ALDutyPosition>
+
+@{
+    ViewData["Title"] = "ALDutyPositions";
+}
+
+<h1>ALDutyPositions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
