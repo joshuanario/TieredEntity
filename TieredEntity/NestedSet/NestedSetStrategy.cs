@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TieredEntity.NestedSet
 {
-    public class NestedSetStrategy<TTiered> : ITierStrategy<TTiered> where TTiered : NestedSetTiered
+    public class NestedSetStrategy<TTiered> : ITierStrategy<TTiered>, IComparer<TTiered> where TTiered : NestedSetTiered
     {
         private readonly DbSet<TTiered> _dbSet;
         public NestedSetStrategy(DbSet<TTiered> dbSet)
@@ -29,7 +29,7 @@ namespace TieredEntity.NestedSet
         public IList<ISet<TTiered>> Juniors(TTiered model)
         {
             TTiered[] arr = _dbSet.Where(t => model.IsNesting(t) || t.TreeId == null)
-                .OrderBy(t => t.Left).ToArray().Where(model.IsBetween).ToArray();
+                .OrderBy(t => t.Left).ToArray().Where(model.IsNesting).ToArray();
             if (!arr.Any()) return new List<ISet<TTiered>>();
 
             // modified pre-ordered tree traversal algorithm
@@ -60,7 +60,7 @@ namespace TieredEntity.NestedSet
             List<ISet<TTiered>> ret = new List<ISet<TTiered>>();
             for (int i = 0; i < maxgen + 1; i++)
             {
-                ret.Add(new SortedSet<TTiered>());
+                ret.Add(new SortedSet<TTiered>(this));
             }
 
             for (int i = 0; i < arr.Length; i++)
@@ -196,6 +196,11 @@ namespace TieredEntity.NestedSet
                     t.LeaveTree<TTiered>();
                 }
             }
+        }
+
+        public int Compare(TTiered x, TTiered y)
+        {
+            return y.Left - x.Left;
         }
     }
 }
