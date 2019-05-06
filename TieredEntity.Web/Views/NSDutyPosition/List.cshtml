@@ -19,10 +19,13 @@
                     <td>
                         <div>@Html.DisplayFor(modelItem => item.VertexId)</div>
                         <div>@Html.DisplayFor(modelItem => item.Title)</div>
-                        <div>
-                            [<span>@Html.DisplayFor(modelItem => item.Left)</span>,
-                            <span>@Html.DisplayFor(modelItem => item.Right)</span>]
-                        </div>
+                        @if (item != null)
+                        {
+                            <div>
+                                [<span>@Html.DisplayFor(modelItem => item.Left)</span>,
+                                <span>@Html.DisplayFor(modelItem => item.Right)</span>]
+                            </div>
+                        }
                     </td>
                 }
             </tr>
