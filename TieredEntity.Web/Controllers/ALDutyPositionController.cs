@@ -123,7 +123,6 @@ namespace TieredEntity.Web.Controllers
                 }
                 ret.Add(list);
 
-                int stop = count - init - gen.Count;
                 for (int i = 0; i < init; i++)
                 {
                     list.Add(null);

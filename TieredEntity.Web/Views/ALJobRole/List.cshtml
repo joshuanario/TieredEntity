@@ -1,0 +1,28 @@
+﻿@model System.Collections.Generic.List<System.Collections.Generic.List<TieredEntity.Web.Models.ALJobRole>>
+
+@{
+    ViewData["Title"] = "ALJobRoles";
+}
+
+<h1>ALJobRoles</h1>
+
+<table>
+    <thead>
+    <tr><th>Adjacency List on Job Roles</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var gen in Model)
+    {
+        <tr>
+            @foreach (var item in gen)
+            {
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.VertexId)</div>
+                    <div>@Html.DisplayFor(modelItem => item.Title)</div>
+                    <div>@Html.DisplayFor(modelItem => item.NextId)</div>
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
