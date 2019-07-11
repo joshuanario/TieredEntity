@@ -5,30 +5,28 @@
 }
 
 <h1>NSJobRoles</h1>
+<h4>Nested Sets on Job Roles</h4>
 
-<table>
-    <thead>
-    <tr><th>Nested Sets on Job Roles</th></tr>
-    </thead>
+<table style="table-layout: fixed">
     <tbody>
-    @foreach (var gen in Model)
-    {
-        <tr>
-            @foreach (var item in gen)
-            {
-                <td>
-                    <div>@Html.DisplayFor(modelItem => item.VertexId)</div>
-                    <div>@Html.DisplayFor(modelItem => item.Title)</div>
-                    @if (item != null)
-                    {
-                        <div>
-                            [<span>@Html.DisplayFor(modelItem => item.Left)</span>,
-                            <span>@Html.DisplayFor(modelItem => item.Right)</span>]
-                        </div>
-                    }
-                </td>
-            }
-        </tr>
-    }
+        @foreach (var gen in Model)
+        {
+            <tr class="tier-row">
+                @foreach (var item in gen)
+                {
+                    <td style="white-space: nowrap; width: 203px; overflow: auto" class="cell">
+                        <div>@Html.DisplayFor(modelItem => item.VertexId)</div>
+                        <div>@Html.DisplayFor(modelItem => item.Title)</div>
+                        @if (item != null)
+                        {
+                            <div>
+                                [<span>@Html.DisplayFor(modelItem => item.Left)</span>,
+                                <span>@Html.DisplayFor(modelItem => item.Right)</span>]
+                            </div>
+                        }
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

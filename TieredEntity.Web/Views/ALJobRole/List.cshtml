@@ -5,24 +5,22 @@
 }
 
 <h1>ALJobRoles</h1>
+<h4>Adjacency List on Job Roles</h4>
 
-<table>
-    <thead>
-    <tr><th>Adjacency List on Job Roles</th></tr>
-    </thead>
+<table style="table-layout: fixed">
     <tbody>
-    @foreach (var gen in Model)
-    {
-        <tr>
-            @foreach (var item in gen)
-            {
-                <td>
-                    <div>@Html.DisplayFor(modelItem => item.VertexId)</div>
-                    <div>@Html.DisplayFor(modelItem => item.Title)</div>
-                    <div>@Html.DisplayFor(modelItem => item.NextId)</div>
-                </td>
-            }
-        </tr>
-    }
+        @foreach (var gen in Model)
+        {
+            <tr class="tier-row">
+                @foreach (var item in gen)
+                {
+                    <td style="white-space: nowrap; width: 203px; overflow: auto" class="cell">
+                        <span>@Html.DisplayFor(modelItem => item.VertexId)</span>&nbsp;
+                        <span>@Html.DisplayFor(modelItem => item.Title)</span>&nbsp;
+                        <span>@Html.DisplayFor(modelItem => item.NextId)</span>
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

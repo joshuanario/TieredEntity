@@ -30,7 +30,7 @@ namespace TieredEntity.Web.Controllers
             aldps.Add(east);
             var south = new ALDutyPosition { Title = Constants.Southdog };
             aldps.Add(south);
-            var west = new ALDutyPosition { Title = Constants.Southdog };
+            var west = new ALDutyPosition { Title = Constants.Westdog };
             aldps.Add(west);
             var north = new ALDutyPosition { Title = Constants.Northdog };
             aldps.Add(north);
@@ -121,12 +121,13 @@ namespace TieredEntity.Web.Controllers
                 {
                     list.Add(t);
                 }
-                ret.Add(list);
 
                 for (int i = 0; i < init; i++)
                 {
                     list.Add(null);
                 }
+
+                ret.Add(list);
             }
             return View(ret);
         }
