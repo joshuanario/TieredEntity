@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
-
-namespace TieredEntity.AdjacencyList
+﻿namespace TieredEntity.AdjacencyList
 {
     public class AdjacencyListStrategyFactory<TTiered> : ITierStrategyFactory<TTiered> where TTiered : AdjacencyListTiered
     {
@@ -16,14 +13,14 @@ namespace TieredEntity.AdjacencyList
         {
         }
 
-        public ITierStrategy<TTiered> TierStrategy(DbSet<TTiered> dbSet)
+        public ITierStrategy<TTiered> TierStrategy(IList<TTiered> list)
         {
-            if (dbSet == null)
+            if (list == null)
             {
                 throw new System.Exception("Collection should not be null");
             }
             
-            return new AdjacencyListStrategy<TTiered>(dbSet);
+            return new AdjacencyListStrategy<TTiered>(list);
         }
     }
 }
