@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace TieredEntity
+﻿namespace TieredEntity
 {
     public interface ITierStrategyFactory<TTiered> where TTiered : class, ITiered
     {
