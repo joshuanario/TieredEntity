@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
-
-namespace TieredEntity.NestedSet
+﻿namespace TieredEntity.NestedSet
 {
     public class NestedSetStrategyFactory<TTiered> : ITierStrategyFactory<TTiered> where TTiered : NestedSetTiered
     {
@@ -16,14 +13,14 @@ namespace TieredEntity.NestedSet
         {
         }
 
-        public ITierStrategy<TTiered> TierStrategy(DbSet<TTiered> dbSet)
+        public ITierStrategy<TTiered> TierStrategy(IList<TTiered> list)
         {
-            if (dbSet == null)
+            if (list == null)
             {
                 throw new System.Exception("Collection should not be null");
             }
             
-            return new NestedSetStrategy<TTiered>(dbSet);
+            return new NestedSetStrategy<TTiered>(list);
         }
     }
 }

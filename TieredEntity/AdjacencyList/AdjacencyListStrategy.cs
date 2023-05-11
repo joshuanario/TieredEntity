@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
-namespace TieredEntity.AdjacencyList
+﻿namespace TieredEntity.AdjacencyList
 {
     public class AdjacencyListStrategy<TTiered> : ITierStrategy<TTiered> where TTiered : AdjacencyListTiered
     {
-        private readonly DbSet<TTiered> _dbSet;
-        public AdjacencyListStrategy(DbSet<TTiered> dbSet) 
+        private readonly IList<TTiered> _list;
+        public AdjacencyListStrategy(IList<TTiered> list) 
         {
-            _dbSet = dbSet;
+            _list = list;
         }
 
         public TTiered Get(int id)
         {
-            return _dbSet.FirstOrDefault(t => t.VertexId == id);
+            return _list.FirstOrDefault(t => t.VertexId == id);
         }
 
         public IList<TTiered> Seniors(TTiered model)
@@ -36,7 +30,7 @@ namespace TieredEntity.AdjacencyList
         {
             HashSet<TTiered> CurrToPrev(HashSet<TTiered> currgen)
             {
-                TTiered[] arr = _dbSet.Where(t => currgen.Any(c => t.NextId == c.VertexId)).ToArray();
+                TTiered[] arr = _list.Where(t => currgen.Any(c => t.NextId == c.VertexId)).ToArray();
                 HashSet<TTiered> prevgen = new HashSet<TTiered>(arr);
                 return prevgen;
             }

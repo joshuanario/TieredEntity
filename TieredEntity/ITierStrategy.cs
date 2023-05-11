@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TieredEntity
+﻿namespace TieredEntity
 {
     public interface ITierStrategy<TTiered> where TTiered : class, ITiered
     {
